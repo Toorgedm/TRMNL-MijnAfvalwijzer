@@ -44,14 +44,16 @@
         </span>
       </div>
     </div>
+    <!-- TOON EEN BIJPASSENDE AFBEELDING -->
     <div class="item col--span-4 items--start" style="overflow: visible;">
       <div class="content" style="overflow: visible; line-height: 1.2;">
         {% for ophaaldag in ophaaldagenNext.data limit:1 %}
         <span class="value value--medium">
-          {% if ophaaldag.type contains "gft" %}<img class="image image--contain" style="width: 200px; height: auto;" src="https://raw.githubusercontent.com/hossain-khan/trmnl-next-pickup-plugin/c6a4b6e1a247cb00cbb606d8d82b6cd5705c9612/resources/icons/yard-waste.svg">
-          {% else %}
-          <img class="image  image--contain" style="width: 200px; height: auto;" src="https://raw.githubusercontent.com/hossain-khan/trmnl-next-pickup-plugin/c6a4b6e1a247cb00cbb606d8d82b6cd5705c9612/resources/icons/recycle-bin.svg">
-          {% endif %}
+          {% if ophaaldag.type contains "rest" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
+          {% if ophaaldag.type contains "gft" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
+          {% if ophaaldag.type contains "pmd" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
+          {% if ophaaldag.type contains "papier" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
+          {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
         </span>
         {% endfor %}
       </div>
