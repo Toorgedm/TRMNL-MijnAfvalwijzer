@@ -1,0 +1,100 @@
+<div class="layout layout--col gap--space-between">
+  <!-- CODE VOOR VOLGENDE OPHAALDAG -->
+  {% if response != 'NOK' and ophaaldagenNext.response != 'NOK' %}
+  <div class="grid">
+    <div class="item col--span-8 items--start" style="overflow: visible;">
+      <div class="meta"></div>
+      <div class="content" style="overflow: visible; padding-bottom: 1.25rem; line-height: 1.2;">
+        <span class="label">Volgende ophaaldag</span>
+        {% for ophaaldag in ophaaldagenNext.data limit:1 %}
+
+        <!-- INSTELLEN NEDERLANDSE DAGEN EN MAANDEN -->
+        {% assign dag_nummer = ophaaldag.date | date: "%w" %}
+        {% assign maand_nummer = ophaaldag.date | date: "%m" %}
+
+        {% case dag_nummer %}
+        {% when "0" %}{% assign dag_naam = "Zondag" %}
+        {% when "1" %}{% assign dag_naam = "Maandag" %}
+        {% when "2" %}{% assign dag_naam = "Dinsdag" %}
+        {% when "3" %}{% assign dag_naam = "Woensdag" %}
+        {% when "4" %}{% assign dag_naam = "Donderdag" %}
+        {% when "5" %}{% assign dag_naam = "Vrijdag" %}
+        {% when "6" %}{% assign dag_naam = "Zaterdag" %}
+        {% endcase %}
+
+        {% case maand_nummer %}
+        {% when "01" %}{% assign maand_naam = "januari" %}
+        {% when "02" %}{% assign maand_naam = "februari" %}
+        {% when "03" %}{% assign maand_naam = "maart" %}
+        {% when "04" %}{% assign maand_naam = "april" %}
+        {% when "05" %}{% assign maand_naam = "mei" %}
+        {% when "06" %}{% assign maand_naam = "juni" %}
+        {% when "07" %}{% assign maand_naam = "juli" %}
+        {% when "08" %}{% assign maand_naam = "augustus" %}
+        {% when "09" %}{% assign maand_naam = "september" %}
+        {% when "10" %}{% assign maand_naam = "oktober" %}
+        {% when "11" %}{% assign maand_naam = "november" %}
+        {% when "12" %}{% assign maand_naam = "december" %}
+        {% endcase %}
+
+        <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
+        <span class="value value--medium" style="line-height: 1.1;" >
+          <br>{{ ophaaldag.nameType | capitalize }}
+          {% endfor %}
+        </span>
+      </div>
+    </div>
+    <div class="item col--span-4 items--start" style="overflow: visible;">
+      <div class="content" style="overflow: visible; line-height: 1.2;">
+        {% for ophaaldag in ophaaldagenNext.data limit:1 %}
+        <span class="value value--medium">
+          {% if ophaaldag.type contains "gft" %}<img class="image image--contain" style="width: 200px; height: auto;" src="https://raw.githubusercontent.com/hossain-khan/trmnl-next-pickup-plugin/c6a4b6e1a247cb00cbb606d8d82b6cd5705c9612/resources/icons/yard-waste.svg">
+          {% else %}
+          <img class="image  image--contain" style="width: 200px; height: auto;" src="https://raw.githubusercontent.com/hossain-khan/trmnl-next-pickup-plugin/c6a4b6e1a247cb00cbb606d8d82b6cd5705c9612/resources/icons/recycle-bin.svg">
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="meta"></div>
+    </div>
+  </div>
+  {% else %}
+
+  <!-- GEEN OPHAALDAGEN BESCHIKBAAR, DAN DIT TONEN -->
+  <div class="grid">
+    <div class="item col--span-12 items--start" style="overflow: visible;">
+      <div class="meta"></div>
+      <div class="content" style="overflow: visible; padding-bottom: 0.25rem; line-height: 1.2;">
+        <span class="label">Helaas</span>
+        <span class="value value--small">Geen ophaaldagen gevonden</span>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="w--full b-h-gray-5"></div>
+
+  <!-- 4 WEKEN VOORUIT -->
+  {% if response != 'NOK' and ophaaldagenNext.response != 'NOK' %}
+  <div class="grid gap--small items--start">
+    <div class="item col--span-8 content--start" style="min-height: 100px;">
+      <div class="meta"></div>
+      <div class="content content--start" style="align-self: flex-start;">
+        <span class="label">Komende 4 weken</span>
+        {% for ophaaldag in ophaaldagenNext.data limit:4 offset:1 %}
+        <span class="value value--tnums value--xsmall">{{ dag_naam }} {{ ophaaldag.date | date: "%d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ ophaaldag.nameType | capitalize }}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- TITLE BAR -->
+<div class="title_bar">
+  <span class="title">
+    Ophaaldagen huisvuil | Mijn Afvalwijzer | {{ trmnl.plugin_settings.custom_fields_values.strpostcode }}, {{ trmnl.plugin_settings.custom_fields_values.inthuisnummer }} {{ trmnl.plugin_settings.custom_fields_values.strHuisnummerToevoeging }}
+  </span>
+  <span class="instance">
+    Bijgewerkt: {{ "now" | date: "%d-%m-%Y" }}
+  </span>
+</div>
