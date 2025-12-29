@@ -1,0 +1,42 @@
+<div class="layout layout--col gap--space-between">
+  <!-- CODE VOOR VOLGENDE OPHAALDAG -->
+  {% if response != 'NOK' and ophaaldagenNext.response != 'NOK' %}
+  <div class="grid">
+    <div class="item col--span-8 items--start" style="overflow: visible;">
+      <div class="meta"></div>
+      <div class="content" style="overflow: visible; padding-bottom: 1.25rem; line-height: 1.2;">
+        <span class="label">Volgende ophaaldag</span>
+        {% for ophaaldag in ophaaldagenNext.data limit:1 %}
+        <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
+        <span class="value value--medium" style="line-height: 0.6;" >
+          <br>{{ ophaaldag.nameType | capitalize }}
+          {% endfor %}
+        </span>
+      </div>
+    </div>
+  </div>
+  {% else %}
+
+  <!-- GEEN OPHAALDAGEN BESCHIKBAAR, DAN DIT TONEN -->
+  <div class="grid">
+    <div class="item col--span-12 items--start" style="overflow: visible;">
+      <div class="meta"></div>
+      <div class="content" style="overflow: visible; padding-bottom: 0.25rem; line-height: 1.2;">
+        <span class="label">Helaas</span>
+        <span class="value value--small">Geen ophaaldagen gevonden</span>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="w--full b-h-gray-5"></div>
+</div>
+
+<!-- TITLE BAR -->
+<div class="title_bar">
+  <span class="title">
+    {{ trmnl.plugin_settings.custom_fields_values.strpostcode }} nr. {{ trmnl.plugin_settings.custom_fields_values.inthuisnummer }} {{ trmnl.plugin_settings.custom_fields_values.strHuisnummerToevoeging }}
+  </span>
+  <span class="instance">
+    {{ "now" | date: "%d-%m-%Y" }}
+  </span>
+</div>

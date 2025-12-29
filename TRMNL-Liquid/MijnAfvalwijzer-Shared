@@ -1,0 +1,32 @@
+<!-- SHARED: NEDERLANDSE DAGEN EN MAANDEN -->
+{% assign dag_nummer = ophaaldagenNext.data[0].date | date: "%w" %}
+{% assign maand_nummer = ophaaldagenNext.data[0].date | date: "%m" %}
+
+{% case dag_nummer %}
+{% when "0" %}{% assign dag_naam = "Zondag" %}
+{% when "1" %}{% assign dag_naam = "Maandag" %}
+{% when "2" %}{% assign dag_naam = "Dinsdag" %}
+{% when "3" %}{% assign dag_naam = "Woensdag" %}
+{% when "4" %}{% assign dag_naam = "Donderdag" %}
+{% when "5" %}{% assign dag_naam = "Vrijdag" %}
+{% when "6" %}{% assign dag_naam = "Zaterdag" %}
+{% endcase %}
+
+{% case maand_nummer %}
+{% when "01" %}{% assign maand_naam = "januari" %}
+{% when "02" %}{% assign maand_naam = "februari" %}
+{% when "03" %}{% assign maand_naam = "maart" %}
+{% when "04" %}{% assign maand_naam = "april" %}
+{% when "05" %}{% assign maand_naam = "mei" %}
+{% when "06" %}{% assign maand_naam = "juni" %}
+{% when "07" %}{% assign maand_naam = "juli" %}
+{% when "08" %}{% assign maand_naam = "augustus" %}
+{% when "09" %}{% assign maand_naam = "september" %}
+{% when "10" %}{% assign maand_naam = "oktober" %}
+{% when "11" %}{% assign maand_naam = "november" %}
+{% when "12" %}{% assign maand_naam = "december" %}
+{% endcase %}
+
+<div class="m--2">
+  <span class="value value--small value--tnums">Mijn Afvalwijzer</span>
+</div>
