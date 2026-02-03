@@ -106,21 +106,7 @@
                 {% when "5" %}{% assign dag_naam = "Vrijdag" %}
                 {% when "6" %}{% assign dag_naam = "Zaterdag" %}
               {% endcase %}
-              {% case maand_nummer %}
-                {% when "01" %}{% assign maand_naam = "januari" %}
-                {% when "02" %}{% assign maand_naam = "februari" %}
-                {% when "03" %}{% assign maand_naam = "maart" %}
-                {% when "04" %}{% assign maand_naam = "april" %}
-                {% when "05" %}{% assign maand_naam = "mei" %}
-                {% when "06" %}{% assign maand_naam = "juni" %}
-                {% when "07" %}{% assign maand_naam = "juli" %}
-                {% when "08" %}{% assign maand_naam = "augustus" %}
-                {% when "09" %}{% assign maand_naam = "september" %}
-                {% when "10" %}{% assign maand_naam = "oktober" %}
-                {% when "11" %}{% assign maand_naam = "november" %}
-                {% when "12" %}{% assign maand_naam = "december" %}
-              {% endcase %}
-              <span class="value value--tnums value--xsmall">{{ dag_naam }} {{ ophaaldag.date | date: "%d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ ophaaldag.nameType | capitalize }}
+              <span class="value value--tnums value--xsmall">{{ dag_naam }} {{ ophaaldag.date | date: "%d-%m-%Y" }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ ophaaldag.nameType | capitalize }}
               </span>
             {% endif %}
             {% assign teller_3 = teller_3 | plus: 1 %}
