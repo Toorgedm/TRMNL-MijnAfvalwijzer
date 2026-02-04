@@ -5,9 +5,9 @@
   <!-- CODE VOOR VOLGENDE OPHAALDAG -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid">
-    <div class="item col--span-8 items--start" style="overflow: visible;">
+    <div class="item col--span-8 items--start">
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 1.25rem; line-height: 1.2;">
+      <div class="content pb--5">
         <span class="label">Volgende ophaaldag</span>
         {% assign teller_1 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}
@@ -39,7 +39,7 @@
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
             <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium" style="line-height: 1.1;" >
+            <span class="value value--medium">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -48,18 +48,18 @@
       </div>
     </div>
     <!-- TOON EEN BIJPASSENDE AFBEELDING -->
-    <div class="item col--span-4 items--start" style="overflow: visible;">
-      <div class="content" style="overflow: visible; line-height: 1.2;">
+    <div class="item col--span-4 items--start">
+      <div class="content">
         {% assign teller_2 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}
           {% assign ophaaldag_timestamp = ophaaldag.date | date: "%s" %}
           {% if ophaaldag_timestamp >= vandaag_timestamp and teller_2 == 0 %}
             <span class="value value--medium">
-              {% if ophaaldag.type contains "rest" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
-              {% if ophaaldag.type contains "gft" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
-              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
-              {% if ophaaldag.type contains "papier" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
-              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain" style="width: auto; height: 140px;" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
+              {% if ophaaldag.type contains "rest" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
+              {% if ophaaldag.type contains "gft" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
+              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
+              {% if ophaaldag.type contains "papier" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
+              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
             </span>
             {% assign teller_2 = 1 %}
           {% endif %}
@@ -72,9 +72,9 @@
 
   <!-- GEEN OPHAALDAGEN BESCHIKBAAR, DAN DIT TONEN -->
   <div class="grid">
-    <div class="item col--span-12 items--start" style="overflow: visible;">
+    <div class="item col--span-12 items--start" >
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 0.25rem; line-height: 1.2;">
+      <div class="content" class="content pb--1">
         <span class="label">Helaas</span>
         <span class="value value--small">Geen ophaaldagen gevonden</span>
       </div>
@@ -86,9 +86,9 @@
   <!-- 4 WEKEN VOORUIT -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid gap--small items--start">
-    <div class="item col--span-8 content--start" style="min-height: 100px;">
+    <div class="item col--span-8 content--start h--min-[100px]">
       <div class="meta"></div>
-      <div class="content content--start" style="align-self: flex-start;">
+      <div class="content content--start self--start">
         <span class="label">Komende 4 weken</span>
         {% assign teller_3 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}

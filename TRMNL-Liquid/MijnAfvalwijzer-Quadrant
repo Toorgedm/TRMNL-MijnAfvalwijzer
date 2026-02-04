@@ -5,9 +5,9 @@
   <!-- CODE VOOR VOLGENDE OPHAALDAG -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid">
-    <div class="item col--span-8 items--start" style="overflow: visible;">
+    <div class="item col--span-8 items--start">
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 1.25rem; line-height: 1.2;">
+       <div class="content pb--3">
         <span class="label">Volgende ophaaldag</span>
         {% assign teller_1 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}
@@ -39,7 +39,7 @@
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
             <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium" style="line-height: 1.1;" >
+            <span class="value value--medium">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -52,9 +52,9 @@
 
   <!-- GEEN OPHAALDAGEN BESCHIKBAAR, DAN DIT TONEN -->
   <div class="grid">
-    <div class="item col--span-12 items--start" style="overflow: visible;">
+    <div class="item col--span-12 items--start">
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 0.25rem; line-height: 1.2;">
+      <div class="content" class="content pb--1">
         <span class="label">Helaas</span>
         <span class="value value--small">Geen ophaaldagen gevonden</span>
       </div>

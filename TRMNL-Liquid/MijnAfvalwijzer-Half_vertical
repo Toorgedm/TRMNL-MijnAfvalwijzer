@@ -5,9 +5,9 @@
   <!-- CODE VOOR VOLGENDE OPHAALDAG -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid">
-    <div class="item col--span-8 items--start" style="overflow: visible;">
+    <div class="item col--span-8 items--start">
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 1.25rem; line-height: 1.2;">
+      <div class="content pb--5">
         <span class="label">Volgende ophaaldag</span>
         {% assign teller_1 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}
@@ -39,7 +39,7 @@
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
             <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium" style="line-height: 1.1;" >
+            <span class="value value--medium">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -52,9 +52,9 @@
 
   <!-- GEEN OPHAALDAGEN BESCHIKBAAR, DAN DIT TONEN -->
   <div class="grid">
-    <div class="item col--span-12 items--start" style="overflow: visible;">
+    <div class="item col--span-12 items--start">
       <div class="meta"></div>
-      <div class="content" style="overflow: visible; padding-bottom: 0.25rem; line-height: 1.2;">
+      <div class="content" class="content pb--1">
         <span class="label">Helaas</span>
         <span class="value value--small">Geen ophaaldagen gevonden</span>
       </div>
@@ -66,9 +66,9 @@
   <!-- 4 WEKEN VOORUIT -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid gap--small items--start">
-    <div class="item col--span-8 content--start" style="min-height: 100px;">
+    <div class="item col--span-8 content--start h--min-[100px]">
       <div class="meta"></div>
-      <div class="content content--start" style="align-self: flex-start;">
+      <div class="content content--start self--start">
         <span class="label">Komende 4 weken</span>
         {% assign teller_3 = 0 %}
         {% for ophaaldag in ophaaldagen.data %}
@@ -78,13 +78,13 @@
               {% assign dag_nummer = ophaaldag.date | date: "%w" %}
               {% assign maand_nummer = ophaaldag.date | date: "%m" %}
               {% case dag_nummer %}
-                {% when "0" %}{% assign dag_naam = "Zondag" %}
-                {% when "1" %}{% assign dag_naam = "Maandag" %}
-                {% when "2" %}{% assign dag_naam = "Dinsdag" %}
-                {% when "3" %}{% assign dag_naam = "Woensdag" %}
-                {% when "4" %}{% assign dag_naam = "Donderdag" %}
-                {% when "5" %}{% assign dag_naam = "Vrijdag" %}
-                {% when "6" %}{% assign dag_naam = "Zaterdag" %}
+                {% when "0" %}{% assign dag_naam = "Zo" %}
+                {% when "1" %}{% assign dag_naam = "Ma" %}
+                {% when "2" %}{% assign dag_naam = "Di" %}
+                {% when "3" %}{% assign dag_naam = "Wo" %}
+                {% when "4" %}{% assign dag_naam = "Do" %}
+                {% when "5" %}{% assign dag_naam = "Vr" %}
+                {% when "6" %}{% assign dag_naam = "Za" %}
               {% endcase %}
               <span class="value value--tnums value--xsmall">{{ dag_naam }} {{ ophaaldag.date | date: "%d-%m-%Y" }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ ophaaldag.nameType | capitalize }}
               </span>
