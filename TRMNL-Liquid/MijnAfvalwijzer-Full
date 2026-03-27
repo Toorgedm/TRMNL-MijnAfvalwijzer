@@ -38,8 +38,8 @@
               {% when "11" %}{% assign maand_naam = "november" %}
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
-            <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium">
+            <span class="value value--small lg:value--medium value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
+            <span class="value value--medium lg:value--large">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -55,11 +55,11 @@
           {% assign ophaaldag_timestamp = ophaaldag.date | date: "%s" %}
           {% if ophaaldag_timestamp >= vandaag_timestamp and teller_2 == 0 %}
             <span class="value value--medium">
-              {% if ophaaldag.type contains "rest" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
-              {% if ophaaldag.type contains "gft" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
-              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
-              {% if ophaaldag.type contains "papier" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
-              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
+              {% if ophaaldag.type contains "rest" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
+              {% if ophaaldag.type contains "gft" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
+              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
+              {% if ophaaldag.type contains "papier" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
+              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
             </span>
             {% assign teller_2 = 1 %}
           {% endif %}
@@ -83,18 +83,19 @@
   {% endif %}
   <div class="w--full b-h-gray-5"></div>
 
-  <!-- 4 WEKEN VOORUIT -->
+  <!-- 4 tot 8 WEKEN VOORUIT -->
   {% if response != 'NOK' and ophaaldagen.response != 'NOK' %}
   <div class="grid gap--small items--start">
     <div class="item col--span-8 content--start h--min-[100px]">
       <div class="meta"></div>
       <div class="content content--start self--start">
-        <span class="label">Komende 4 weken</span>
+        <span class="label">Komende weken</span>
         {% assign teller_3 = 0 %}
+        <table>
         {% for ophaaldag in ophaaldagen.data %}
           {% assign ophaaldag_timestamp = ophaaldag.date | date: "%s" %}
           {% if ophaaldag_timestamp >= vandaag_timestamp %}
-            {% if teller_3 > 0 and teller_3 < 5 %}
+            {% if teller_3 > 0 and teller_3 < 9 %}
               {% assign dag_nummer = ophaaldag.date | date: "%w" %}
               {% assign maand_nummer = ophaaldag.date | date: "%m" %}
               {% case dag_nummer %}
@@ -106,13 +107,17 @@
                 {% when "5" %}{% assign dag_naam = "Vrijdag" %}
                 {% when "6" %}{% assign dag_naam = "Zaterdag" %}
               {% endcase %}
-              <span class="value value--tnums value--xsmall">{{ dag_naam }} {{ ophaaldag.date | date: "%d-%m-%Y" }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ ophaaldag.nameType | capitalize }}
-              </span>
+              <tr{% if teller_3 >= 5 %} class="hidden lg:table-row"{% endif %}>
+                <td class="value value--tnums value--xsmall lg:value--small">{{ dag_naam }}&nbsp;</td>
+                <td class="value value--tnums value--xsmall lg:value--small">{{ ophaaldag.date | date: "%d-%m-%Y" }}&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+                <td class="value value--tnums value--xsmall lg:value--small">{{ ophaaldag.nameType | capitalize }}</td>
+              </tr>
             {% endif %}
             {% assign teller_3 = teller_3 | plus: 1 %}
           {% endif %}
-          {% if teller_3 >= 5 %}{% break %}{% endif %}
+          {% if teller_3 >= 9 %}{% break %}{% endif %}
         {% endfor %}
+        </table>
       </div>
     </div>
   </div>
@@ -121,7 +126,7 @@
 
 <!-- TITLE BAR -->
 <div class="title_bar">
-  <span class="title">
+  <span class="title lg:title--large">
     Ophaaldagen huisvuil: {{ trmnl.plugin_settings.custom_fields_values.strpostcode }} nr. {{ trmnl.plugin_settings.custom_fields_values.inthuisnummer }} {{ trmnl.plugin_settings.custom_fields_values.strHuisnummerToevoeging }}
   </span>
   <span class="instance">

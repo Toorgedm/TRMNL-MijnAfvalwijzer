@@ -38,8 +38,8 @@
               {% when "11" %}{% assign maand_naam = "november" %}
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
-            <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium">
+            <span class="value value--small lg:value--medium value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
+            <span class="value value--medium lg:value--large">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -55,11 +55,11 @@
           {% assign ophaaldag_timestamp = ophaaldag.date | date: "%s" %}
           {% if ophaaldag_timestamp >= vandaag_timestamp and teller_2 == 0 %}
             <span class="value value--medium">
-              {% if ophaaldag.type contains "rest" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
-              {% if ophaaldag.type contains "gft" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
-              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
-              {% if ophaaldag.type contains "papier" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
-              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain w--auto h--36" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
+              {% if ophaaldag.type contains "rest" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-rest.svg">{% endif %}
+              {% if ophaaldag.type contains "gft" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-gft.svg">{% endif %}
+              {% if ophaaldag.type contains "pmd" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-pmd.svg">{% endif %}
+              {% if ophaaldag.type contains "papier" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Container-papier.svg">{% endif %}
+              {% if ophaaldag.type contains "kerstbomen" %}<img class="image image--contain w--auto h--36 lg:h--48" src="https://raw.githubusercontent.com/Toorgedm/TRMNL-MijnAfvalwijzer/refs/heads/main/icons/Kerstbomen.svg">{% endif %}
             </span>
             {% assign teller_2 = 1 %}
           {% endif %}
@@ -86,7 +86,7 @@
 
 <!-- TITLE BAR -->
 <div class="title_bar">
-  <span class="title">
+  <span class="title lg:title--large">
     Ophaaldagen huisvuil: {{ trmnl.plugin_settings.custom_fields_values.strpostcode }} nr. {{ trmnl.plugin_settings.custom_fields_values.inthuisnummer }} {{ trmnl.plugin_settings.custom_fields_values.strHuisnummerToevoeging }}
   </span>
   <span class="instance">

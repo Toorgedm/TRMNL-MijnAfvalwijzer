@@ -38,8 +38,8 @@
               {% when "11" %}{% assign maand_naam = "november" %}
               {% when "12" %}{% assign maand_naam = "december" %}
             {% endcase %}
-            <span class="value value--small value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
-            <span class="value value--medium">
+            <span class="value value--small lg:value--medium value--tnums">{{ dag_naam }} {{ ophaaldag.date | date: "%-d" }} {{ maand_naam }} {{ ophaaldag.date | date: "%Y" }}</span>
+            <span class="value value--medium lg:value--large">
               <br>{{ ophaaldag.nameType | capitalize }}
             </span>
             {% assign teller_1 = 1 %}
@@ -66,7 +66,7 @@
 
 <!-- TITLE BAR -->
 <div class="title_bar">
-  <span class="title">
+  <span class="title lg:title--large">
     {{ trmnl.plugin_settings.custom_fields_values.strpostcode }} nr. {{ trmnl.plugin_settings.custom_fields_values.inthuisnummer }} {{ trmnl.plugin_settings.custom_fields_values.strHuisnummerToevoeging }}
   </span>
   <span class="instance">
