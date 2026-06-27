@@ -9,9 +9,11 @@ Het werkt op basis van postcode en huisnummer.
 Geoptimaliseerd voor TRMNL X.
 
 --- Bekend issue sinds mei 2026 ---
+
 Op dit moment ververst de plug-in niet altijd goed, omdat de brondata statisch is. Het TRMNL-platform rendert alleen een nieuw scherm als de inhoud is veranderd. Dit is een platform-probleem. Op dit moment wordt gezocht naar een passende oplossing.
 
 --- Versie geschiedenis ---
+
 Verie 1.1
 Update voor het uitkomen van de TRMNL X, waarbij beter gebruik wordt gemaakt van de beschikbare ruimte.
 
